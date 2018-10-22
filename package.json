@@ -1,0 +1,15 @@
+{
+  "name": "strategy_manager",
+  "version": "1.0.0",
+  "description": "Server to manage backup strategies",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo TestNotDefined",
+    "start": "node server.js"
+  },
+  "author": "Grupo 2",
+  "license": "MIT",
+  "engines": {
+    "node": "8.10.0"
+  }
+}
