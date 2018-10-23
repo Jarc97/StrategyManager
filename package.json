@@ -13,6 +13,8 @@
     "node": "8.10.0"
   },
   "dependencies": {
+    "admin-lte": "^2.4.8",
+    "dropbox": "^4.0.12",
     "express": "^4.16.4"
   }
 }
