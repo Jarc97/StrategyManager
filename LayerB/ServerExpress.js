@@ -16,6 +16,8 @@ var dbx = function() {
     return new Dropbox({ accessToken: dropboxKey});
 }
 
+app.use(express.static(__dirname + "/../LayerA/"));
+
 const INDEX_URL = "/"
 const API_URL = "/api"
 // look for PORT environment variable, else look for CLI argument, else use hard coded value for port 8080
@@ -26,6 +28,7 @@ app.get(INDEX_URL, function (req, res) {
     let ip = req.header("x-forwarded-for");
     console.log("Accessed " + INDEX_URL + " from " + ip);
     // res.send('Administrador de estrategias de respaldo, Grupo 2');
+    res.render("index.html");
 });
 
 
