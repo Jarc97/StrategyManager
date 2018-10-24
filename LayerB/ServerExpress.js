@@ -29,7 +29,7 @@ var dbx = function() {
 // });
 // app.use(express.static(__dirname + "/../LayerA/"));
 
-const LAYER_A = __dirname + "/../LayerA/src"
+const LAYER_A = __dirname + "/../LayerA"
 const LAYER_B = __dirname
 
 const INDEX_URL = "/"
@@ -44,7 +44,7 @@ app.get(INDEX_URL, function (req, res) {
     let ip = req.header("x-forwarded-for");
     console.log("Accessed " + INDEX_URL + " from " + ip);
     // res.send('Administrador de estrategias de respaldo, Grupo 2');
-    res.sendFile(path.join(__dirname + "/index.html"));
+    res.sendFile(path.join(LAYER_A + "/index.html"));
 });
 
 

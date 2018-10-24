@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CoreUI CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css">
+
+    <title>Admin</title>
+  </head>
+
+  <body class="app sidebar-show aside-menu-show">
+    <header class="app-header navbar">
+      <!-- Header content here -->
+      <a class="navbar-brand" href="#">
+          <img class="navbar-brand-full" src="images/UNA.JPG" alt="UNA" width="89" height="25">
+      </a>
+    </header>
+    <div class="app-body">
+      <div class="sidebar">
+        <!-- Sidebar content here -->
+      </div>
+      <main class="main">
+        <!-- Main content here -->
+
+        <h1>Administrador de Estrategias de Respaldo</h1>
+        
+        <div class="container-fluid">
+          <div class="animated fadeIn">
+            <div class="row">
+
+              <div class="col-sm-6 col-lg-3">
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                  <div class="card-header">Data Base 1</div>
+                  <div class="card-body">
+
+                    <h5 class="card-title">Current State: Ok</h5>
+                    <p class="card-text">Quick sample text</p>
+
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Actions
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+                        <a class="dropdown-item" href="#">Get Status</a>
+                        <a class="dropdown-item" href="#">Deploy Backup</a>
+                        <a class="dropdown-item" href="#">Strategy Settings</a>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="card-footer bg-success">Last updated 13 minutes ago</div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-lg-3">
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                  <div class="card-header">Data Base 2</div>
+                  <div class="card-body">
+                    <h5 class="card-title">Current State: Ok</h5>
+                    <p class="card-text">Quick sample text</p>
+                  </div>
+                  <div class="card-footer bg-success">Last updated 25 minutes ago</div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-lg-3">
+                <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+                  <div class="card-header">Data Base 3</div>
+                  <div class="card-body">
+                    <h5 class="card-title">Current State: Unknown</h5>
+                    <p class="card-text">Quick sample text</p>
+                  </div>
+                  <div class="card-footer bg-warning">Last updated 10 hours ago</div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-lg-3">
+                <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+                  <div class="card-header">Data Base 4</div>
+                  <div class="card-body">
+                    <h5 class="card-title">Current State: Down</h5>
+                    <p class="card-text">Quick sample text</p>
+                  </div>
+                  <div class="card-footer bg-danger">Last updated 27 hours ago</div>
+                </div>
+              </div>
+
+              <div class="col-sm-6 col-lg-3">
+                <div class="card text-white bg-success">
+                  <div class="card-body pb-0">
+                    <div class="btn-group float-right">
+                      <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="icon-settings"></i>
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                    </div>
+                    <div class="text-value">BD 1</div>
+                    <div>Members online</div>
+                  </div>
+                  <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+                    <canvas class="chart" id="card-chart1" height="70"></canvas>
+                  </div>
+                </div>
+              </div>
+              <!-- /.col-->
+
+            </div>
+          </div>
+        </div>
+      </main>
+      
+      <aside class="aside-menu">
+        <!-- Aside menu content here -->
+      </aside>
+    </div>
+    <footer class="app-footer">
+      <!-- Footer content here -->
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script>
+      $('.dropdown').on('show.bs.dropdown', function () {
+        // do something…
+        console.log("hello");
+      })
+    </script>
+
+    <!-- jQuery first, then Popper.js, Bootstrap, then CoreUI  -->
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
+  </body>
+</html>
