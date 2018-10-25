@@ -57,7 +57,6 @@ app.get(INDEX_URL, function (req, res) {
 
 
 app.get(API_URL, function (req, res) {
-    console.log("API ACCESSED");
     res.contentType("application/json");
     res.json(clients);
 });
