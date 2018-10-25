@@ -23,22 +23,38 @@ function update() {
     .then(function(data) {
         console.log("server replied!");
 
-        // for (var i in dbCards) {
-        //     status = i
-        // }
+        for (var i = 0; i < data.length; i++) {
+            current = data[i];
+            id = current.id;
+            status = current.status;
+            statusText = "Current Status: " + status;
 
+            statusTagString = "_db" + (i+1) + "-status";
+            statusTag = document.getElementsByClassName(statusTagString);
+            statusTag[0].innerHTML = statusText;
 
-        // first = data[0];
-        // first[id]
-        // first[status]
-        // if (first[status] === "Ok") {
-        //     _db1[0].classList.remove(STATUS_WARNING);
-        //     _db1[0].classList.add(STATUS_OK);
-        // } else {
-        //     _db1[0].classList.remove(STATUS_OK);
-        //     _db1[0].classList.add(STATUS_DOWN);
-        // }
-        // console.log(first);
+            descriptionTagString = "_db" + (i+1) + "-description";
+            descriptionTag = document.getElementsByClassName(descriptionTagString);
+            descriptionTag[0].innerHTML = id;
+            
+            switch (status) {
+                case "OK":
+                    dbCards[i][0].classList.remove(STATUS_DOWN);
+                    dbCards[i][0].classList.add(STATUS_OK);
+                    dbCards[i][1].classList.remove(STATUS_DOWN);
+                    dbCards[i][1].classList.add(STATUS_OK);
+                    break;
+                case "DOWN":
+                    dbCards[i][0].classList.remove(STATUS_OK);
+                    dbCards[i][0].classList.add(STATUS_DOWN);
+                    dbCards[i][1].classList.remove(STATUS_OK);
+                    dbCards[i][1].classList.add(STATUS_DOWN);
+                    break;
+                default:
+                    console.log("default");
+                    break;
+            }
+        }
     })
     .catch(function(error) {
         console.log(error);

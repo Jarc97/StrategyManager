@@ -9,9 +9,9 @@ var path = require('path');
 // Globals
 var app = express();
 var clients = [
-    {id: "db0", status: "DOWN", lastUpdate: 0},
-    {id: "db1", status: "DOWN", lastUpdate: 0},
-    {id: "db2", status: "DOWN", lastUpdate: 0}
+    // {id: "db0", status: "DOWN", lastUpdate: 0},
+    // {id: "db1", status: "DOWN", lastUpdate: 0},
+    // {id: "db2", status: "DOWN", lastUpdate: 0}
 ];
 
 function initDropbox() {

@@ -19,9 +19,6 @@
       </a>
     </header>
     <div class="app-body">
-      <div class="sidebar">
-        <!-- Sidebar content here -->
-      </div>
       <main class="main">
         <!-- Main content here -->
 
@@ -32,59 +29,46 @@
             <div class="row">
 
               <div class="col-sm-6 col-lg-3">
-                <div class="card text-white bg-success mb-3 _db1" style="max-width: 18rem;">
+                <div class="card text-white bg-secondary mb-3 _db1" style="max-width: 18rem;">
                   <div class="card-header">Data Base 1</div>
                   <div class="card-body">
-
-                    <h5 class="card-title">Current State: Ok</h5>
-                    <p class="card-text">Quick sample text</p>
-
-                    <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Actions
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-                        <a class="dropdown-item" href="#">Get Status</a>
-                        <a class="dropdown-item" href="#">Deploy Backup</a>
-                        <a class="dropdown-item" href="#">Strategy Settings</a>
-                      </div>
-                    </div>
-
+                    <h5 class="card-title _db1-status">Current Status: Unknown</h5>
+                    <p class="card-text _db1-description">Quick sample text</p>
                   </div>
-                  <div class="card-footer bg-success _db1">Last updated 13 minutes ago</div>
+                  <div class="card-footer bg-secondary _db1">Last updated 13 minutes ago</div>
                 </div>
               </div>
 
               <div class="col-sm-6 col-lg-3">
-                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                <div class="card text-white bg-secondary mb-3 _db2" style="max-width: 18rem;">
                   <div class="card-header">Data Base 2</div>
                   <div class="card-body">
-                    <h5 class="card-title">Current State: Ok</h5>
+                    <h5 class="card-title _db2-status">Current Status: Unknown</h5>
                     <p class="card-text">Quick sample text</p>
                   </div>
-                  <div class="card-footer bg-success">Last updated 25 minutes ago</div>
+                  <div class="card-footer bg-secondary _db2">Last updated 25 minutes ago</div>
                 </div>
               </div>
 
               <div class="col-sm-6 col-lg-3">
-                <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+                <div class="card text-white bg-secondary mb-3 _db3" style="max-width: 18rem;">
                   <div class="card-header">Data Base 3</div>
                   <div class="card-body">
-                    <h5 class="card-title">Current State: Unknown</h5>
+                    <h5 class="card-title _db3-status">Current Status: Unknown</h5>
                     <p class="card-text">Quick sample text</p>
                   </div>
-                  <div class="card-footer bg-warning">Last updated 10 hours ago</div>
+                  <div class="card-footer bg-secondary _db3">Last updated 10 hours ago</div>
                 </div>
               </div>
 
               <div class="col-sm-6 col-lg-3">
-                <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+                <div class="card text-white bg-secondary mb-3 _db4" style="max-width: 18rem;">
                   <div class="card-header">Data Base 4</div>
                   <div class="card-body">
-                    <h5 class="card-title">Current State: Down</h5>
+                    <h5 class="card-title _db4-status">Current Status: Unknown</h5>
                     <p class="card-text">Quick sample text</p>
                   </div>
-                  <div class="card-footer bg-danger">Last updated 27 hours ago</div>
+                  <div class="card-footer bg-secondary _db4">Last updated 27 hours ago</div>
                 </div>
               </div>
 
@@ -102,7 +86,7 @@
                       </div>
                     </div>
                     <div class="text-value">BD 1</div>
-                    <div>Members online</div>
+                    <div>Test</div>
                   </div>
                   <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
                     <canvas class="chart" id="card-chart1" height="70"></canvas>
