@@ -75,6 +75,12 @@ app.get(API_URL + "/new" + "/:name", function (req, res) {
     }
 });
 
+app.get(API_URL + "reset", function (req, res) {
+    clients = [];
+    res.contentType("application/json");
+    res.json({status: true});
+});
+
 
 app.listen(PORT, function () {
     console.log('App listening on port ' + PORT);
