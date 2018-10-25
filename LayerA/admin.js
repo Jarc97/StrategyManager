@@ -1,4 +1,4 @@
-const url = "http://localhost:5000/api";
+const url = "https://strategy-manager-g2.herokuapp.com/api";
 
 var _db1 = document.getElementsByClassName("_db1");
 var _db2 = document.getElementsByClassName("_db2");
