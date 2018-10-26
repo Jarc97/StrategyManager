@@ -56,18 +56,20 @@ app.get(INDEX_URL, function (req, res) {
 });
 
 
+// Get all the databases being tracked in JSON format
 app.get(API_URL, function (req, res) {
     res.contentType("application/json");
     res.json(clients);
 });
 
 
+// To register a new database to be tracked
 app.get(API_URL + "/new" + "/:name", function (req, res) {
     let name = req.params.name;
     console.log("API: new database called " + name);
     res.contentType("application/json");
     if (clients.length < 4) {
-        clients.push({id: name, status: "OK", lastUpdate: 0});
+        clients.push({id: name, status: "OK", lastUpdate: 0, command: "no"});
         res.json({status: true});
         console.log(clients);
     } else {
@@ -75,6 +77,37 @@ app.get(API_URL + "/new" + "/:name", function (req, res) {
     }
 });
 
+
+// Called by admin when assigning a task (command) for a database
+app.get(API_URL + "/task" + "/:t" + "/to" + "/:id", function (req, res) {
+    console.log("API: task to called");
+    task = req.params.t;
+    to = req.params.id;
+    for (var i = 0; i < clients.length; i++) {
+        if (clients[i].id === to) {
+            clients[i].command = task;
+            res.json({status: true});
+        }
+    }
+    res.json({status: false});
+});
+
+
+// Return a task to do for the database
+app.get(API_URL + "/gettask" + "/:id", function (req, res) {
+    reqId = req.params.id;
+    for (var i = 0; i < clients.length; i++) {
+        if (clients[i].id === reqId) {
+            clientPendingCommand = clients[i].command;
+            res.json({command: clientPendingCommand});
+            // reset the pending command
+            clients[i].command = "no";
+        }
+    }
+});
+
+
+// Reset the list of databases being tracked
 app.get(API_URL + "/reset", function (req, res) {
     clients = [];
     res.contentType("application/json");
@@ -82,6 +115,7 @@ app.get(API_URL + "/reset", function (req, res) {
 });
 
 
+// Start the server
 app.listen(PORT, function () {
     console.log('App listening on port ' + PORT);
 });

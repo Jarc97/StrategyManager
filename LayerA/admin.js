@@ -1,4 +1,5 @@
 const url = "https://strategy-manager-g2.herokuapp.com/api";
+// const url = "http://localhost:5000/api";
 
 var _db1 = document.getElementsByClassName("_db1");
 var _db2 = document.getElementsByClassName("_db2");
@@ -59,6 +60,26 @@ function update() {
     .catch(function(error) {
         console.log(error);
     });
+}
+
+function backup(description) {
+    list = document.getElementsByClassName(description);
+    id = list[0].innerHTML;
+    backupCommandURL = "https://strategy-manager-g2.herokuapp.com/api/task/backup/to/" + id;
+    // testingURL = "http://localhost:5000/api/task/backup/to/" + id;
+
+    const Http = new XMLHttpRequest();
+    Http.open("GET", backupCommandURL);
+    Http.send();
+
+    // fetch(testingURL)
+    // .then((resp) => resp.json())
+    // .then(function (data) {
+    //     alert("Backup command sent");
+    // })
+    // .catch(function(error) {
+    //     alert("Error sending backup command");
+    // });
 }
 
 // Loop function for background updates
