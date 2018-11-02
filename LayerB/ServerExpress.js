@@ -5,6 +5,7 @@ var express = require('express');
 require('isomorphic-fetch'); // or another library of choice.
 var Dropbox = require('dropbox').Dropbox;
 var path = require('path');
+var DataBase = require("./DataBase.js").DataBase;
 
 // Globals
 var app = express();
@@ -13,6 +14,18 @@ var clients = [
     // {id: "db1", status: "DOWN", lastUpdate: 0},
     // {id: "db2", status: "DOWN", lastUpdate: 0}
 ];
+
+var o = {};
+const TYPES = ["full", "partial"];
+function generateJsonStrategy(title, type, frecuency) {
+    let data = {
+        "title" : title,
+        "type" : type,
+        "frecuency" : frecuency
+    };
+    console.log(JSON.stringify(data));
+    return JSON.stringify(data);
+}
 
 function initDropbox() {
     let dropboxKeyPath = __dirname + "/../secret/dropbox_key.txt";
@@ -69,7 +82,8 @@ app.get(API_URL + "/new" + "/:name", function (req, res) {
     console.log("API: new database called " + name);
     res.contentType("application/json");
     if (clients.length < 4) {
-        clients.push({id: name, status: "OK", lastUpdate: 0, command: "no"});
+        // clients.push({id: name, status: "OK", lastUpdate: 0, command: "no"});
+        clients.push(new DataBase(name));
         res.json({status: true});
         console.log(clients);
     } else {
@@ -119,6 +133,28 @@ app.get(API_URL + "/strat", function (req, res) {
 });
 
 
+app.get(API_URL + "/strat" + "/:name", function (req, res) {
+    let n = req.params.name;
+    for (var i = 0; i < clients.length; i++) {
+        if (clients[i].strategy.database_name === n) {
+            res.json(clients[i].strategy);
+        }
+    }
+});
+
+
+app.get(API_URL + "/setstrat" + "/:name" + "/:interval", function (req, res) {
+    let n = req.params.name;
+    let inter = req.params.interval;
+    for (var i = 0; i < clients.length; i++) {
+        if (clients[i].strategy.database_name === n) {
+            clients[i].strategy.time_interval = inter;
+            console.log(clients[i]);
+        }
+    }
+});
+
+
 // Reset the list of databases being tracked
 app.get(API_URL + "/reset", function (req, res) {
     clients = [];
@@ -130,5 +166,7 @@ app.get(API_URL + "/reset", function (req, res) {
 // Start the server
 app.listen(PORT, function () {
     console.log('App listening on port ' + PORT);
+
+    generateJsonStrategy("test_title", "full backup", 1200);
 });
 

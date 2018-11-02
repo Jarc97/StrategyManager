@@ -1,81 +1,89 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- CoreUI CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Admin</title>
-  </head>
+  <!-- CoreUI CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css">
 
-  <body class="app sidebar-show aside-menu-show">
-    <header class="app-header navbar">
-      <!-- Header content here -->
-      <a class="navbar-brand" href="#">
-          <img class="navbar-brand-full" src="images/UNA.JPG" alt="UNA" width="89" height="25">
-      </a>
-    </header>
-    <div class="app-body">
-      <main class="main">
-        <!-- Main content here -->
+  <title>Admin</title>
+</head>
 
-        <h1>Administrador de Estrategias de Respaldo</h1>
-        
-        <div class="container-fluid">
-          <div class="animated fadeIn">
-            <div class="row">
+<body class="app sidebar-show aside-menu-show">
+  <header class="app-header navbar">
+    <!-- Header content here -->
+    <a class="navbar-brand" href="#">
+      <img class="navbar-brand-full" src="images/UNA.JPG" alt="UNA" width="89" height="25">
+    </a>
+  </header>
+  <div class="app-body">
+    <main class="main">
+      <!-- Main content here -->
 
-              <div class="col-sm-6 col-lg-3">
-                <div class="card text-white bg-secondary mb-3 _db1" style="max-width: 18rem;">
-                  <div class="card-header">Data Base 1</div>
-                  <div class="card-body">
-                    <h5 class="card-title _db1-status">Current Status: Unknown</h5>
-                    <p class="card-text _db1-description">Quick sample text</p>
-                    <button onclick="backup('_db1-description')">Backup</button>
-                  </div>
-                  <div class="card-footer bg-secondary _db1">Last updated 13 minutes ago</div>
+      <h1>Administrador de Estrategias de Respaldo</h1>
+
+      <div id="mydiv"></div>
+
+      <div class="container-fluid">
+        <div class="animated fadeIn">
+          <div class="row">
+
+            <div class="col-sm-6 col-lg-3">
+              <div class="card text-white bg-secondary mb-3 _db1" style="max-width: 18rem;">
+                <div class="card-header">Data Base 1</div>
+                <div class="card-body">
+                  <h5 class="card-title _db1-status">Current Status: Unknown</h5>
+                  <p class="card-text _db1-description">Quick sample text</p>
+                  <!-- <button onclick="backup('_db1-description')" data-toggle="modal" data-target="#myModal">Backup</button> -->
+                  <button onclick="setStrategy('_db1-description')" data-toggle="modal" data-target="#myModal">Strategy</button>
                 </div>
+                <div class="card-footer bg-secondary _db1">Last updated 13 minutes ago</div>
               </div>
+            </div>
 
-              <div class="col-sm-6 col-lg-3">
-                <div class="card text-white bg-secondary mb-3 _db2" style="max-width: 18rem;">
-                  <div class="card-header">Data Base 2</div>
-                  <div class="card-body">
-                    <h5 class="card-title _db2-status">Current Status: Unknown</h5>
-                    <p class="card-text _db2-description">Quick sample text</p>
-                    <button onclick="backup('_db2-description')">Backup</button>
-                  </div>
-                  <div class="card-footer bg-secondary _db2">Last updated 25 minutes ago</div>
+            <div class="col-sm-6 col-lg-3">
+              <div class="card text-white bg-secondary mb-3 _db2" style="max-width: 18rem;">
+                <div class="card-header">Data Base 2</div>
+                <div class="card-body">
+                  <h5 class="card-title _db2-status">Current Status: Unknown</h5>
+                  <p class="card-text _db2-description">Quick sample text</p>
+                  <!-- <button onclick="backup('_db2-description')">Backup</button> -->
+                  <button onclick="setStrategy('_db2-description')" data-toggle="modal" data-target="#myModal">Strategy</button>
                 </div>
+                <div class="card-footer bg-secondary _db2">Last updated 25 minutes ago</div>
               </div>
+            </div>
 
-              <div class="col-sm-6 col-lg-3">
-                <div class="card text-white bg-secondary mb-3 _db3" style="max-width: 18rem;">
-                  <div class="card-header">Data Base 3</div>
-                  <div class="card-body">
-                    <h5 class="card-title _db3-status">Current Status: Unknown</h5>
-                    <p class="card-text _db3-description">Quick sample text</p>
-                    <button onclick="backup('_db3-description')">Backup</button>
-                  </div>
-                  <div class="card-footer bg-secondary _db3">Last updated 10 hours ago</div>
+            <div class="col-sm-6 col-lg-3">
+              <div class="card text-white bg-secondary mb-3 _db3" style="max-width: 18rem;">
+                <div class="card-header">Data Base 3</div>
+                <div class="card-body">
+                  <h5 class="card-title _db3-status">Current Status: Unknown</h5>
+                  <p class="card-text _db3-description">Quick sample text</p>
+                  <!-- <button onclick="backup('_db3-description')">Backup</button> -->
+                  <button onclick="setStrategy('_db3-description')" data-toggle="modal" data-target="#myModal">Strategy</button>
                 </div>
+                <div class="card-footer bg-secondary _db3">Last updated 10 hours ago</div>
               </div>
+            </div>
 
-              <div class="col-sm-6 col-lg-3">
-                <div class="card text-white bg-secondary mb-3 _db4" style="max-width: 18rem;">
-                  <div class="card-header">Data Base 4</div>
-                  <div class="card-body">
-                    <h5 class="card-title _db4-status">Current Status: Unknown</h5>
-                    <p class="card-text _db4-description">Quick sample text</p>
-                    <button onclick="backup('_db4-description')">Backup</button>
-                  </div>
-                  <div class="card-footer bg-secondary _db4">Last updated 27 hours ago</div>
+            <div class="col-sm-6 col-lg-3">
+              <div class="card text-white bg-secondary mb-3 _db4" style="max-width: 18rem;">
+                <div class="card-header">Data Base 4</div>
+                <div class="card-body">
+                  <h5 class="card-title _db4-status">Current Status: Unknown</h5>
+                  <p class="card-text _db4-description">Quick sample text</p>
+                  <!-- <button onclick="backup('_db4-description')">Backup</button> -->
+                  <button onclick="setStrategy('_db4-description')" data-toggle="modal" data-target="#myModal">Strategy</button>
                 </div>
+                <div class="card-footer bg-secondary _db4">Last updated 27 hours ago</div>
               </div>
+            </div>
 
+            <!--
               <div class="col-sm-6 col-lg-3">
                 <div class="card text-white bg-success">
                   <div class="card-body pb-0">
@@ -97,22 +105,51 @@
                   </div>
                 </div>
               </div>
-              <!-- /.col-->
+              -->
+            <!-- /.col-->
 
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6 col-lg-4">
+            <div class="card">
+              <div class="card-header">
+                <strong>Strategy Configuration</strong> </div>
+              <div class="card-body">
+
+                  <p id="db-name">Database Name: </p>
+                  Full backup every <input id="db-interval" type="text" name="fname"> hours<br>
+
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-sm btn-primary" type="submit" onclick="submit()">
+                  <i class="fa fa-dot-circle-o"></i> Submit</button>
+                  <!--
+                <button class="btn btn-sm btn-danger" type="reset">
+                  <i class="fa fa-ban"></i> Reset</button>
+                -->
+              </div>
+            </div>
             </div>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
 
-    <!-- Optional JavaScript -->
-    <script src="./admin.js" type="text/javascript"></script> 
-    
+    </main>
+  </div>
 
-    <!-- jQuery first, then Popper.js, Bootstrap, then CoreUI  -->
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
-  </body>
+  <!-- Optional JavaScript -->
+  <script src="./admin.js" type="text/javascript"></script>
+
+
+  <!-- jQuery first, then Popper.js, Bootstrap, then CoreUI  -->
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
+</body>
+
 </html>

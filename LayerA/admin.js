@@ -13,7 +13,21 @@ const STATUS_WARNING = "bg-warning";
 const STATUS_DOWN = "bg-danger";
 
 function initialize() {
-    
+    // $("#mydiv").load("b.html");
+    // To Do: select all children from a card
+
+    // html = $("<p>hello</p>");
+    // html.attr("id", "1");
+    // html2 = $("<p>hello 2</p>");
+    // html2.attr("id", "2");
+    // $("#includedContentDiv").append(html);
+    // $("#includedContentDiv").append(html2);
+
+    //$("#includedContentDiv").add(hello)
+    //$("#includedContent").load("b.html");
+    //$("#includedContent").load("b.html");
+
+    // With JQuery
     ready = true;
 }
 
@@ -26,8 +40,8 @@ function update() {
 
         for (var i = 0; i < data.length; i++) {
             current = data[i];
-            id = current.id;
-            status = current.status;
+            id = current.strategy.database_name;
+            status = current.strategy.status;
             statusText = "Current Status: " + status;
 
             statusTagString = "_db" + (i+1) + "-status";
@@ -80,6 +94,30 @@ function backup(description) {
     // .catch(function(error) {
     //     alert("Error sending backup command");
     // });
+}
+
+var selectedDB = "";
+
+function setStrategy(dbName) {
+    let name = document.getElementsByClassName(dbName)[0].innerHTML;
+    selectedDB = name;
+    document.getElementById("db-name").innerHTML = "Database Name: " + name;
+
+    fetch(url + "/strat/" + name)
+    .then((resp) => resp.json())
+    .then(function(data) {
+        let interval = data.time_interval;
+        document.getElementById("db-interval").value = interval;
+    })
+
+    // interval = document.getElementById("db-interval").value;
+    console.log(dbName);
+}
+
+function submit() {
+    name = selectedDB;
+    interval = document.getElementById("db-interval").value;
+    fetch(url + "/setstrat/" + name + "/" + interval);
 }
 
 // Loop function for background updates
