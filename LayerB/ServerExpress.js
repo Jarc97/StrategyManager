@@ -107,6 +107,18 @@ app.get(API_URL + "/gettask" + "/:id", function (req, res) {
 });
 
 
+app.get(API_URL + "/strat", function (req, res) {
+    res.json({
+        "command": "new",
+        "database-name":"Aaron",
+        "time-interval":15,
+        "type":"complete",
+        "tables":[],
+        "complete-interval":0,
+    });
+});
+
+
 // Reset the list of databases being tracked
 app.get(API_URL + "/reset", function (req, res) {
     clients = [];
