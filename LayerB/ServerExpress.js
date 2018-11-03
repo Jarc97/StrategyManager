@@ -6,14 +6,22 @@ require('isomorphic-fetch'); // or another library of choice.
 var Dropbox = require('dropbox').Dropbox;
 var path = require('path');
 var DataBase = require("./DataBase.js").DataBase;
+var bodyParser = require("body-parser")
 
 // Globals
 var app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extened: true
+}));
+
 var clients = [
     // {id: "db0", status: "DOWN", lastUpdate: 0},
     // {id: "db1", status: "DOWN", lastUpdate: 0},
     // {id: "db2", status: "DOWN", lastUpdate: 0}
 ];
+
+
 
 var o = {};
 const TYPES = ["full", "partial"];
@@ -37,7 +45,7 @@ function initDropbox() {
     return dropboxKey;
 }
 var dropboxKey = initDropbox();
-var dbx = new Dropbox({accessToken : dropboxKey});
+// var dbx = new Dropbox({accessToken : dropboxKey});
 
 // app.use(express.static(__dirname + "/../LayerA/"), function(req, res, next) {
 //     //console.log("Middleware for ALL requests");
@@ -153,6 +161,14 @@ app.get(API_URL + "/setstrat" + "/:name" + "/:interval", function (req, res) {
         }
     }
 });
+
+
+
+app.post(API_URL + "/testpost", function(req, res) {
+    let number = req.body.number;
+    console.log(number);
+})
+
 
 
 // Reset the list of databases being tracked
