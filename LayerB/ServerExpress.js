@@ -179,6 +179,8 @@ app.post(API_URL + "/testpost", function(req, res) {
 // Called by the client (Python) and updates a database json to
 // have the lastest log contents
 app.post(API_URL + "/updatelog", function (req, res) {
+    //a = JSON.parse(req);
+    console.log(req);
     let name = req.body.database_name;
     for (var i = 0; i < clients.length; i++) {
         if (clients[i].strategy.database_name === name) {
