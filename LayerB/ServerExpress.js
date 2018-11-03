@@ -178,12 +178,15 @@ app.post(API_URL + "/testpost", function(req, res) {
 // have the lastest log contents
 app.post(API_URL + "/updatelog", function (req, res) {
     console.log("/updatelog called");
-    let myJson = JSON.parse(req.body.wrapper);
 
-    let a = myJson.time_interval;
-    console.log(myJson);
-    console.log("----------");
-    console.log(a);
+    let stringJson = req.body.wrapper;
+    console.log(stringJson);
+    //let myJson = JSON.parse(req.body);
+
+    // let a = myJson.time_interval;
+    // console.log(myJson);
+    // console.log("----------");
+    // console.log(a);
 
     // let name = req.body.database_name;
     for (var i = 0; i < clients.length; i++) {
