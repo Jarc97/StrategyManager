@@ -10,7 +10,7 @@ var bodyParser = require("body-parser")
 
 // Globals
 var app = express();
-app.use(bodyParser.json());
+app.use(bodyParser.text());
 app.use(bodyParser.urlencoded({
     extened: true
 }));
@@ -179,9 +179,10 @@ app.post(API_URL + "/testpost", function(req, res) {
 app.post(API_URL + "/updatelog", function (req, res) {
     console.log("/updatelog called");
 
-    let stringJson = req.body.wrapper;
-    console.log(stringJson);
-    //let myJson = JSON.parse(req.body);
+    let stringJson = req.body;
+    console.log("THIS IS A STRING:\n" + stringJson);
+    let myJson = JSON.parse(stringJson);
+    console.log("THIS IS JSON:\n" + myJson);
 
     // let a = myJson.time_interval;
     // console.log(myJson);
@@ -189,13 +190,13 @@ app.post(API_URL + "/updatelog", function (req, res) {
     // console.log(a);
 
     // let name = req.body.database_name;
-    for (var i = 0; i < clients.length; i++) {
-        if (clients[i].strategy.database_name === name) {
-            clients[i].strategy = req.body;
-            console.log(req.body);
-            res.json({"status": true});
-        }
-    }
+    // for (var i = 0; i < clients.length; i++) {
+    //     if (clients[i].strategy.database_name === name) {
+    //         clients[i].strategy = req.body;
+    //         console.log(req.body);
+    //         res.json({"status": true});
+    //     }
+    // }
 });
 
 
