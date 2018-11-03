@@ -167,6 +167,7 @@ app.get(API_URL + "/setstrat" + "/:name" + "/:interval", function (req, res) {
 app.post(API_URL + "/testpost", function(req, res) {
     let number = req.body.number;
     console.log(number);
+    res.json({"status": true});
 })
 
 
