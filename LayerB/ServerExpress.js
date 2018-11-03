@@ -178,7 +178,7 @@ app.post(API_URL + "/testpost", function(req, res) {
 // have the lastest log contents
 app.post(API_URL + "/updatelog", function (req, res) {
     console.log("/updatelog called");
-    let myJson = JSON.parse(req.body);
+    let myJson = JSON.parse(req.body.wrapper);
 
     let a = myJson.time_interval;
     console.log(myJson);
