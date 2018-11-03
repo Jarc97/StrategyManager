@@ -11,9 +11,9 @@ var bodyParser = require("body-parser")
 // Globals
 var app = express();
 app.use(bodyParser.text());
-app.use(bodyParser.urlencoded({
-    extened: true
-}));
+// app.use(bodyParser.urlencoded({
+//     extened: true
+// }));
 
 var clients = [
     // {id: "db0", status: "DOWN", lastUpdate: 0},
