@@ -183,6 +183,7 @@ app.post(API_URL + "/updatelog", function (req, res) {
     for (var i = 0; i < clients.length; i++) {
         if (clients[i].strategy.database_name === name) {
             clients[i].strategy = req.body;
+            console.log(req.body);
             res.json({"status": true});
         }
     }

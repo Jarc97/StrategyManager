@@ -3,7 +3,7 @@ class DataBase {
     constructor(name) {
         // this.name = name;
         this.strategy = {
-            "isNew": true,
+            "isNew": 1,
             "database_name": name,
             "status": "OK",
             "time_interval":4,
