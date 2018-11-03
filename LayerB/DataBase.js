@@ -10,10 +10,8 @@ class DataBase {
             "type":"complete",
             "tables":[],
             "complete-interval":0,
-            "log": {
-                "log_name": "",
-                "log_content": ""
-            }
+            "log_name": "",
+            "log_content": ""
         };
     }
 
