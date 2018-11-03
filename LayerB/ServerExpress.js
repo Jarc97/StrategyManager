@@ -131,12 +131,17 @@ app.get(API_URL + "/gettask" + "/:id", function (req, res) {
 
 app.get(API_URL + "/strat", function (req, res) {
     res.json({
-        "command": "new",
-        "database-name":"Aaron",
-        "time-interval":15,
+        "isNew": true,
+        "database_name": name,
+        "status": "OK",
+        "time_interval":4,
         "type":"complete",
         "tables":[],
         "complete-interval":0,
+        "log": {
+            "log_name": "",
+            "log_content": ""
+        }
     });
 });
 
@@ -169,6 +174,19 @@ app.post(API_URL + "/testpost", function(req, res) {
     console.log(number);
     res.json({"status": true});
 })
+
+
+// Called by the client (Python) and updates a database json to
+// have the lastest log contents
+app.post(API_URL + "/updatelog", function (req, res) {
+    let name = req.body.database_name;
+    for (var i = 0; i < clients.length; i++) {
+        if (clients[i].strategy.database_name === name) {
+            clients[i].strategy = req.body;
+            res.json({"status": true});
+        }
+    }
+});
 
 
 

@@ -3,13 +3,17 @@ class DataBase {
     constructor(name) {
         // this.name = name;
         this.strategy = {
-            "command": "new",
+            "isNew": true,
             "database_name": name,
             "status": "OK",
             "time_interval":4,
             "type":"complete",
             "tables":[],
-            "complete-interval":0
+            "complete-interval":0,
+            "log": {
+                "log_name": "",
+                "log_content": ""
+            }
         };
     }
 
