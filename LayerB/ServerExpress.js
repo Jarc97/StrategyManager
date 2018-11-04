@@ -10,10 +10,10 @@ var bodyParser = require("body-parser")
 
 // Globals
 var app = express();
-app.use(bodyParser.text());
-// app.use(bodyParser.urlencoded({
-//     extened: true
-// }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extened: true
+}));
 
 var clients = [
     // {id: "db0", status: "DOWN", lastUpdate: 0},
@@ -178,15 +178,17 @@ app.post(API_URL + "/testpost", function(req, res) {
 // have the lastest log contents
 app.post(API_URL + "/updatelog", function (req, res) {
     console.log("/updatelog called");
-
+    console.log(req.body);
     let name = req.body.database_name;
     for (var i = 0; i < clients.length; i++) {
         if (clients[i].strategy.database_name === name) {
             clients[i].strategy = req.body;
             console.log(req.body);
             res.json({"status": true});
+            // return;
         }
     }
+    // res.json({"status": false});
 });
 
 
