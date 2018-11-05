@@ -21,20 +21,6 @@ var clients = [
     // {id: "db2", status: "DOWN", lastUpdate: 0}
 ];
 
-
-
-var o = {};
-const TYPES = ["full", "partial"];
-function generateJsonStrategy(title, type, frecuency) {
-    let data = {
-        "title" : title,
-        "type" : type,
-        "frecuency" : frecuency
-    };
-    console.log(JSON.stringify(data));
-    return JSON.stringify(data);
-}
-
 function initDropbox() {
     let dropboxKeyPath = __dirname + "/../secret/dropbox_key.txt";
     let dropboxKey = fs.readFile(dropboxKeyPath, "utf8", function(err, data) {
@@ -69,13 +55,42 @@ const PORT = process.env.PORT || process.argv[2] || 8080;
 
 app.set("view engine", "pug");
 
+// ============================== BASIC ==============================
+
+// Start the server
+app.listen(PORT, function () {
+    console.log('App listening on port ' + PORT);
+    setInterval(function() {
+        checkStatus()
+    }, 5000)
+});
+
+
 app.get(INDEX_URL, function (req, res) {
     console.log("GET routing for INDEX")
     let ip = req.header("x-forwarded-for");
     console.log("Accessed " + INDEX_URL + " from " + ip);
-    res.sendFile(path.join(LAYER_A + "/index.html"));
+    res.sendFile(path.join(LAYER_A + "/index2.html"));
 });
 
+
+
+// ============================== SERVER FUNCTIONALITY ==============================
+
+function checkStatus() {
+    let tenSeconds = 10;
+    let now = (new Date).getTime() / 1000;
+
+    for (let i = 0; i < clients.length; i++) {
+        if (now - clients[i].lastPing > tenSeconds) {
+            clients[i].strategy.status = "DISCONNECTED";
+        }
+    }
+}
+
+
+
+// ============================== API ==============================
 
 // Get all the databases being tracked in JSON format
 app.get(API_URL, function (req, res) {
@@ -100,50 +115,7 @@ app.get(API_URL + "/new" + "/:name", function (req, res) {
 });
 
 
-// Called by admin when assigning a task (command) for a database
-app.get(API_URL + "/task" + "/:t" + "/to" + "/:id", function (req, res) {
-    console.log("API: task to called");
-    task = req.params.t;
-    to = req.params.id;
-    for (var i = 0; i < clients.length; i++) {
-        if (clients[i].id === to) {
-            clients[i].command = task;
-            res.json({status: true});
-        }
-    }
-    res.json({status: false});
-});
-
-
-// Return a task to do for the database
-app.get(API_URL + "/gettask" + "/:id", function (req, res) {
-    reqId = req.params.id;
-    for (var i = 0; i < clients.length; i++) {
-        if (clients[i].id === reqId) {
-            clientPendingCommand = clients[i].command;
-            res.json({command: clientPendingCommand});
-            // reset the pending command
-            clients[i].command = "no";
-        }
-    }
-});
-
-
-app.get(API_URL + "/strat", function (req, res) {
-    res.json({
-        "isNew": true,
-        "database_name": name,
-        "status": "OK",
-        "time_interval":4,
-        "type":"complete",
-        "tables":[],
-        "complete-interval":0,
-        "log_name": "",
-        "log_content": ""
-    });
-});
-
-
+// Get the strategy of only one registered database
 app.get(API_URL + "/strat" + "/:name", function (req, res) {
     let n = req.params.name;
     for (var i = 0; i < clients.length; i++) {
@@ -154,6 +126,7 @@ app.get(API_URL + "/strat" + "/:name", function (req, res) {
 });
 
 
+// Set the strategy interval of an specific database
 app.get(API_URL + "/setstrat" + "/:name" + "/:interval", function (req, res) {
     let n = req.params.name;
     let inter = req.params.interval;
@@ -164,14 +137,6 @@ app.get(API_URL + "/setstrat" + "/:name" + "/:interval", function (req, res) {
         }
     }
 });
-
-
-
-app.post(API_URL + "/testpost", function(req, res) {
-    let number = req.body.number;
-    console.log(number);
-    res.json({"status": true});
-})
 
 
 // Called by the client (Python) and updates a database json to
@@ -192,6 +157,42 @@ app.post(API_URL + "/updatelog", function (req, res) {
 });
 
 
+app.get(API_URL + "/ping" + "/:name", function (req, res) {
+    let name = req.params.name;
+    for (let i = 0; i < clients.length; i++) {
+        if (clients[i].strategy.database_name === name) {
+            clients[i].lastPing = (new Date).getTime()/1000;
+            clients[i].strategy.status = "OK";
+            res.json({"status": true});
+        }
+    }
+});
+
+
+
+// ============================== HELPERS ==============================
+
+app.get(API_URL + "/strat", function (req, res) {
+    res.json({
+        "isNew": true,
+        "database_name": name,
+        "status": "OK",
+        "time_interval":4,
+        "type":"complete",
+        "tables":[],
+        "complete-interval":0,
+        "log_name": "",
+        "log_content": ""
+    });
+});
+
+
+app.post(API_URL + "/testpost", function(req, res) {
+    let number = req.body.number;
+    console.log(number);
+    res.json({"status": true});
+})
+
 
 // Reset the list of databases being tracked
 app.get(API_URL + "/reset", function (req, res) {
@@ -201,10 +202,64 @@ app.get(API_URL + "/reset", function (req, res) {
 });
 
 
-// Start the server
-app.listen(PORT, function () {
-    console.log('App listening on port ' + PORT);
 
-    generateJsonStrategy("test_title", "full backup", 1200);
-});
+// ============================== DEPRECATED ==============================
+
+// // @deprecated
+// // Called by admin when assigning a task (command) for a database
+// app.get(API_URL + "/task" + "/:t" + "/to" + "/:id", function (req, res) {
+//     console.warn("Calling a deprecated function!");
+//     console.log("API: task to called");
+//     task = req.params.t;
+//     to = req.params.id;
+//     for (var i = 0; i < clients.length; i++) {
+//         if (clients[i].id === to) {
+//             clients[i].command = task;
+//             res.json({status: true});
+//         }
+//     }
+//     res.json({status: false});
+// });
+
+
+// // @deprecated
+// // Return a task to do for the database
+// app.get(API_URL + "/gettask" + "/:id", function (req, res) {
+//     console.warn("Calling a deprecated function!");
+//     reqId = req.params.id;
+//     for (var i = 0; i < clients.length; i++) {
+//         if (clients[i].id === reqId) {
+//             clientPendingCommand = clients[i].command;
+//             res.json({command: clientPendingCommand});
+//             // reset the pending command
+//             clients[i].command = "no";
+//         }
+//     }
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

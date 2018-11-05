@@ -1,7 +1,7 @@
 
 class DataBase {
     constructor(name) {
-        // this.name = name;
+        this.lastPing = (new Date).getTime() / 1000;
         this.strategy = {
             "isNew": "1",
             "database_name": name,
