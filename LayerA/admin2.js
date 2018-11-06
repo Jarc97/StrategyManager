@@ -114,10 +114,10 @@ function update() {
             for (var i = 0; i < data.length; i++) {
                 let repeated = false
                 current = data[i]
-                db_name = current.strategy.database_name
-                db_name = current.strategy.database_name
-                db_status = current.strategy.status
-                db_log = current.strategy.log_content
+                db_name = current.database_name
+                db_name = current.database_name
+                db_status = current.status
+                db_log = current.log_content
 
                 // First verify the current doesn't exist
                 for (var j = 0; j < databases.length; j++) {
