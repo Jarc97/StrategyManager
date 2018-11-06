@@ -97,7 +97,7 @@ function insertDatabaseCard(Database) {
                 <h6 class="card-title" id="${Database.getStatusTag()}">Current Status: ${status}</h6>
             </div>
             <button type="button" class="btn btn-info" onclick="selectedDatabase('${db_name}');configureStrategy();" data-toggle="modal" data-target="#strategyModal"> Configure Strategy </button>
-            <button type="button" class="btn btn-info" onclick="latestLog('${id}')" data-toggle="modal" data-target="#logModal"> Latest Log </button>
+            <button type="button" class="btn btn-info" onclick="latestLog('${db_name}')" data-toggle="modal" data-target="#logModal"> Latest Log </button>
         </div>
     </div>`
     var db_container = document.getElementById("database-container")
@@ -164,6 +164,16 @@ function saveStrategy() {
     interval = document.getElementById("backup-interval-input").value;
     fetch(url + "/setstrat/" + selectedDB + "/" + interval);
 
+}
+
+
+function latestLog(name) {
+    fetch(url + "/strat/" + name)
+    .then((resp) => resp.json())
+    .then(function(data) {
+        let log = data.log_content;
+        document.getElementById("log-text-area").value = log;
+    })
 }
 
 

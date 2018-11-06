@@ -6,7 +6,7 @@ class DataBase {
             "isNew": "1",
             "database_name": name,
             "status": "OK",
-            "time_interval": "4",
+            "time_interval": "6",
             "type":"complete",
             "complete-interval": "0",
             "log_name": "",

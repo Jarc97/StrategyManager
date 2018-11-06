@@ -78,7 +78,7 @@ app.get(INDEX_URL, function (req, res) {
 // ============================== SERVER FUNCTIONALITY ==============================
 
 function checkStatus() {
-    let tenSeconds = 10;
+    let tenSeconds = 15;
     let now = (new Date).getTime() / 1000;
 
     for (let i = 0; i < clients.length; i++) {
@@ -169,8 +169,13 @@ app.get(API_URL + "/ping" + "/:name", function (req, res) {
         if (clients[i].strategy.database_name === name) {
             //clients[i].lastPing = (new Date).getTime()/1000;
             clients[i].setLastPing((new Date).getTime() / 1000);
-            clients[i].strategy.status = "OK";
-            res.json({"status": true});
+            if (clients[i].strategy.status === "ERROR") {
+                continue;
+                res.json({"status": true});
+            } else {
+                clients[i].strategy.status = "OK";
+                res.json({"status": true});
+            }
         }
     }
 });
