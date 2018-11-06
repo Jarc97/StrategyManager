@@ -82,7 +82,8 @@ function checkStatus() {
     let now = (new Date).getTime() / 1000;
 
     for (let i = 0; i < clients.length; i++) {
-        if (now - clients[i].lastPing > tenSeconds) {
+        // if (now - clients[i].lastPing > tenSeconds) {
+        if (now - parseInt(clients[i].strategy.lastPing)) {
             clients[i].strategy.status = "DISCONNECTED";
         }
     }
@@ -161,7 +162,8 @@ app.get(API_URL + "/ping" + "/:name", function (req, res) {
     let name = req.params.name;
     for (let i = 0; i < clients.length; i++) {
         if (clients[i].strategy.database_name === name) {
-            clients[i].lastPing = (new Date).getTime()/1000;
+            //clients[i].lastPing = (new Date).getTime()/1000;
+            clients[i].setLastPing((new Date).getTime() / 1000);
             clients[i].strategy.status = "OK";
             res.json({"status": true});
         }
