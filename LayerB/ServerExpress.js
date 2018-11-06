@@ -96,7 +96,11 @@ function checkStatus() {
 // Get all the databases being tracked in JSON format
 app.get(API_URL, function (req, res) {
     res.contentType("application/json");
-    res.json(clients);
+    clientsStrategies = [];
+    for (let i = 0; i < clients.length; i++) {
+        clientsStrategies.push(clients[i].strategy);
+    }
+    res.json(clientsStrategies);
 });
 
 
