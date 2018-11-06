@@ -81,9 +81,16 @@ function checkStatus() {
     let seconds = 15;
     let now = (new Date).getTime() / 1000;
 
+    if(clients[0]) {
+        console.log(now - parseInt(clients[0].strategy.lastPing))
+    }
+
     for (let i = 0; i < clients.length; i++) {
         // if (now - clients[i].lastPing > seconds) {
         if (now - parseInt(clients[i].strategy.lastPing) > seconds) {
+
+            
+
             clients[i].strategy.status = "DISCONNECTED";
         }
     }
@@ -170,8 +177,8 @@ app.get(API_URL + "/ping" + "/:name", function (req, res) {
             //clients[i].lastPing = (new Date).getTime()/1000;
             clients[i].setLastPing((new Date).getTime() / 1000);
             if (clients[i].strategy.status === "ERROR") {
-                continue;
                 res.json({"status": true});
+                continue;
             } else {
                 clients[i].strategy.status = "OK";
                 res.json({"status": true});
