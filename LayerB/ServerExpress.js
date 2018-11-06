@@ -78,12 +78,12 @@ app.get(INDEX_URL, function (req, res) {
 // ============================== SERVER FUNCTIONALITY ==============================
 
 function checkStatus() {
-    let tenSeconds = 15;
+    let seconds = 15;
     let now = (new Date).getTime() / 1000;
 
     for (let i = 0; i < clients.length; i++) {
-        // if (now - clients[i].lastPing > tenSeconds) {
-        if (now - parseInt(clients[i].strategy.lastPing)) {
+        // if (now - clients[i].lastPing > seconds) {
+        if (now - parseInt(clients[i].strategy.lastPing) > seconds) {
             clients[i].strategy.status = "DISCONNECTED";
         }
     }
