@@ -133,6 +133,7 @@ app.get(API_URL + "/setstrat" + "/:name" + "/:interval", function (req, res) {
     let inter = req.params.interval;
     for (var i = 0; i < clients.length; i++) {
         if (clients[i].strategy.database_name === n) {
+            clients[i].strategy.isNew = "1";
             clients[i].strategy.time_interval = inter;
             console.log(clients[i]);
         }
